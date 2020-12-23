@@ -6,7 +6,7 @@
 
 ## :books: Introdução
 
-*Varios exemplos de utilização do regexp em Go para validação*
+*Varios exemplos de utilização regexp em Go para validação*
 
 
 
