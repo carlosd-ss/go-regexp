@@ -21,6 +21,6 @@
  
  $ cd pasta/
  
- RUN file.go
+ go run file.go
 ```
 
