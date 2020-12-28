@@ -1,29 +1,30 @@
 package main
 
 import (
+	"errors"
 	"log"
 	"regexp"
 )
 
-func main() {
-
+func emailValidate(s string) error {
 	emailvalidation := regexp.MustCompile(`^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$`)
 
-	var (
-		example1 = "gopher@gmail.com"
-		example2 = "gopher-go@outlook.com"
-		example3 = "gopher-br@hotmail.com.br"
-	)
+	var err error
 
-	if !emailvalidation.MatchString(example1) {
-		log.Println("Exemplo 1 - Invalido")
+	emailerr := errors.New("Email invalido")
+
+	if !emailvalidation.MatchString(s) {
+		err = emailerr
 	}
 
-	if !emailvalidation.MatchString(example2) {
-		log.Println("Exemplo 2 - Invalido")
-	}
+	return err
+}
 
-	if !emailvalidation.MatchString(example3) {
-		log.Println("Exemplo 3 - Invalido")
+func main() {
+	s := "gopher@gmail.com"
+
+	err := emailValidate(s)
+	if err != nil {
+		log.Println("Padrão de Email Invalido")
 	}
 }

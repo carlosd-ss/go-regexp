@@ -1,28 +1,29 @@
 package main
 
 import (
+	"errors"
 	"log"
 	"regexp"
 )
 
+func phoneValidate(s string) error {
+	phonevalidation := regexp.MustCompile(`^(?:\+?55\s?)?(?:\(?\d{2}\)?[\s-]?)?\d{4,5}[-\s]?\d{4}$`)
+
+	var err error
+	phoneerr := errors.New("Cep invalido")
+
+	if !phonevalidation.MatchString(s) {
+		err = phoneerr
+	}
+
+	return err
+}
+
 func main() {
-	telefonevalidation := regexp.MustCompile(`^(?:\+?55\s?)?(?:\(?\d{2}\)?[\s-]?)?\d{4,5}[-\s]?\d{4}$`)
+	s := "11 98888-8888"
 
-	var (
-		example1 = "+55 11 98888-8888"
-		example2 = "11 98888-8888"
-		example3 = "988888888"
-	)
-
-	if !telefonevalidation.MatchString(example1) {
-		log.Println("Exemplo 1 - Invalido")
-	}
-
-	if !telefonevalidation.MatchString(example2) {
-		log.Println("Exemplo 2 - Invalido")
-	}
-
-	if !telefonevalidation.MatchString(example3) {
-		log.Println("Exemplo 3 - Invalido")
+	err := phoneValidate(s)
+	if err != nil {
+		log.Println("Padrão de telefone invalido")
 	}
 }
