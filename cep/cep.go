@@ -1,28 +1,29 @@
 package main
 
 import (
+	"errors"
 	"log"
 	"regexp"
 )
 
-func main() {
+func CepValidate(s string) error {
 	cepvalidation := regexp.MustCompile(`^\d{5}[-\s]?\d{3}$`)
 
-	var (
-		example1 = "65000 000"
-		example2 = "65000000"
-		example3 = "65000-000"
-	)
+	var err error
+	ceperr := errors.New("Cep invalido")
 
-	if !cepvalidation.MatchString(example1) {
-		log.Println("Exemplo 1 - Invalido")
+	if !cepvalidation.MatchString(s) {
+		err = ceperr
 	}
 
-	if !cepvalidation.MatchString(example2) {
-		log.Println("Exemplo 2 - Invalido")
-	}
+	return err
+}
 
-	if !cepvalidation.MatchString(example3) {
-		log.Println("Exemplo 3 - Invalido")
+func main() {
+	s := "65000 0000"
+
+	err := CepValidate(s)
+	if err != nil {
+		log.Println("Padrão de CEP Invalido")
 	}
 }

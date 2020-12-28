@@ -1,0 +1,6 @@
+mode: set
+/home/cdss/goprojects/go-regexp/cpf/cpf.go:9.34,16.35 4 1
+/home/cdss/goprojects/go-regexp/cpf/cpf.go:20.2,20.12 1 1
+/home/cdss/goprojects/go-regexp/cpf/cpf.go:16.35,18.3 1 0
+/home/cdss/goprojects/go-regexp/cpf/cpf.go:23.13,27.16 3 0
+/home/cdss/goprojects/go-regexp/cpf/cpf.go:27.16,29.3 1 0

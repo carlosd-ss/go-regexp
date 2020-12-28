@@ -1,28 +1,30 @@
 package main
 
 import (
+	"errors"
 	"log"
 	"regexp"
 )
 
-func main() {
+func CnpjValidate(s string) error {
 	cnpjvalidation := regexp.MustCompile(`^\d{2}[.-]?(?:\d{3}[.-]?){2}\/?\d{4}[.-]?\d{2}$`)
 
-	var (
-		example1 = "00.000.000/0000-00"
-		example2 = "00000000000000"
-		example3 = "00-000-000-0000-00"
-	)
+	var err error
 
-	if !cnpjvalidation.MatchString(example1) {
-		log.Println("Exemplo 1 - Invalido")
+	cnpjerr := errors.New("CNPJ invalido")
+
+	if !cnpjvalidation.MatchString(s) {
+		err = cnpjerr
 	}
 
-	if !cnpjvalidation.MatchString(example2) {
-		log.Println("Exemplo 2 - Invalido")
-	}
+	return err
+}
 
-	if !cnpjvalidation.MatchString(example3) {
-		log.Println("Exemplo 3 - Invalido")
+func main() {
+	s := "00000000000000"
+
+	err := CnpjValidate(s)
+	if err != nil {
+		log.Println("Padrão de CNPJ Invalido")
 	}
 }
