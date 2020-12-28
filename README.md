@@ -23,7 +23,6 @@
  
  go run file.go
  
- # Executar teste
  go test 
  
 ```
