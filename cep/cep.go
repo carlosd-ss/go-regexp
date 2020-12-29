@@ -9,14 +9,11 @@ import (
 func CepValidate(s string) error {
 	cepvalidation := regexp.MustCompile(`^\d{5}[-\s]?\d{3}$`)
 
-	var err error
-	ceperr := errors.New("Cep invalido")
-
 	if !cepvalidation.MatchString(s) {
-		err = ceperr
+		return errors.New("Cep invalido")
 	}
 
-	return err
+	return nil
 }
 
 func main() {
