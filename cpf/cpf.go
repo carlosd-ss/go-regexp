@@ -9,15 +9,11 @@ import (
 func CpfValidate(s string) error {
 	cpfvalidation := regexp.MustCompile(`^(?:\d{3}[.-]?){3}\d{2}$`)
 
-	var err error
-
-	cpferr := errors.New("CPF invalido")
-
 	if !cpfvalidation.MatchString(s) {
-		err = cpferr
+		return errors.New("CPF invalido")
 	}
 
-	return err
+	return nil
 }
 
 func main() {
